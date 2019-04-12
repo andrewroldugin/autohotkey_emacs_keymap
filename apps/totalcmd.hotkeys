@@ -30,3 +30,5 @@ v::Return
 ^r::Send {F3}
 ^t::Send ^%t%
 ^/::Send ^\
+; goto previous directory in history
+^z::Send !{Left}
