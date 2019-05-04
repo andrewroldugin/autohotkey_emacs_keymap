@@ -1,0 +1,46 @@
+;; search
+m_GetSearchEngine(name) {
+    result := ""
+    if (name == "google") {
+        result := "https://www.google.com/search?q={1}"
+    } else if (name == "google/translate") {
+        result := "https://translate.google.com/#auto/ru/{1}"
+    } else if (name == "github") {
+        result := "https://github.com/search?q={1}"
+    } else if (name == "youtube") {
+        result := "https://www.youtube.com/results?search_query={1}"
+    } else if (name == "urbandictionary") {
+        result := "https://www.urbandictionary.com/define.php?term={1}"
+    }
+    return result
+}
+
+m_GetSelectedText() {
+    tmp := clipboard
+    clipboard := ""
+    Sleep 10
+    Send ^%c%
+    Sleep 10
+    selected := clipboard
+    clipboard := tmp
+    Return selected
+}
+
+m_SearchSelectedText(engine) {
+    content := m_GetSelectedText()
+    template := m_GetSearchEngine(engine)
+    if (content != "" && template != "") {
+        url := Format(template, content)
+        Run %url%
+    }
+}
+
+#If m_Cx()
+s::Return
+
+#If A_PriorHotkey == "s"
+g::m_SearchSelectedText("google")
+t::m_SearchSelectedText("google/translate")
+u::m_SearchSelectedText("urbandictionary")
+c::m_SearchSelectedText("github")
+y::m_SearchSelectedText("youtube")
