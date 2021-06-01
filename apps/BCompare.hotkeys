@@ -1,0 +1,3 @@
+#IfWinActive ahk_exe BCompare.exe
+!n::Send ^%n%
+!p::Send ^%p%

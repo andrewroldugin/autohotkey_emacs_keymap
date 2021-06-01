@@ -1,6 +1,6 @@
 ;; totalcmd
 m_IsTC() {
-  return WinActive("ahk_exe totalcmd.exe")
+  return WinActive("ahk_exe totalcmd64.exe")
 }
 m_RunTortoiseProcCommand(cmd) {
 	Send +{Right} ; activate command line
@@ -18,17 +18,23 @@ i::m_RunTortoiseProcCommand("add")
 l::m_RunTortoiseProcCommand("log")
 m::m_RunTortoiseProcCommand("merge")
 v::m_RunTortoiseProcCommand("commit")
+s::m_RunTortoiseProcCommand("subupdate")
+
 #If m_IsTC() && m_Cx()
 ^c::Send !{F4}
 ^f::Send {F4}
 ^b::Send +{F4}
 h::Send ^{NumpadAdd}
 k::Send ^%w%               ; close folder tab
+o::Send {Tab}
 v::Return
 #If m_IsTC()
 ^c::Send {F4}
 ^r::Send {F3}
+^s::Send !{F7}
 ^t::Send ^%t%
 ^/::Send ^\
 ; goto previous directory in history
 ^z::Send !{Left}
+!^n::Send ^{Tab}
+!^p::Send +^{Tab}

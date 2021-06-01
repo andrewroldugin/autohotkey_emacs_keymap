@@ -1,0 +1,35 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; delphi
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+m_RunRename() {
+  Send !o
+  Sleep 100
+  Send r
+}
+m_RunShowOptions() {
+  Send !p
+  Sleep 100
+  Send o
+}
+
+
+#If WinActive("ahk_exe bds.exe")
+F2::m_RunRename()
+F11::m_RunShowOptions()
+
+#If WinActive("ahk_exe bds.exe") && m_Cx()
+k::Send ^{F4}
+;; activate Parnassus Navigator
+;; You can install it with Get It by name: Navigator
+s::Send ^%g%
+#If WinActive("ahk_exe bds.exe")
+!^n::Send ^{Tab}
+!^p::Send +^{Tab}
+
+;; goto definition
+!.::Send !{UP}
+
+;; go back from definition
+!,::Send !{Left}
+
+!F12::Send !+{F11}

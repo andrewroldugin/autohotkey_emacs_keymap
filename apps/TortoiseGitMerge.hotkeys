@@ -1,0 +1,3 @@
+#IfWinActive ahk_exe TortoiseGitMerge.exe
+!n::Send ^{Down}
+!p::Send ^{Up}

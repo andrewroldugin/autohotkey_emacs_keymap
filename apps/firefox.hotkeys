@@ -5,3 +5,5 @@
 k::Send ^{F4}
 #If WinActive("ahk_exe firefox.exe")
 ^t::Send ^%t%
+!^n::Send ^{Tab}
+!^p::Send +^{Tab}

@@ -1,0 +1,19 @@
+;; activator pad
+m_ActivateWindow(title) {
+    if (!WinActive(title)) {
+        WinActivate, %title%
+    }
+}
+
+; #If (m_IsEnabled())
+#If (true)
+<!<^e::m_ActivateWindow("ahk_class Emacs")
+<!<^t::m_ActivateWindow("ahk_exe Telegram.exe")
+<!<^f::m_ActivateWindow("ahk_exe firefox.exe")
+<!<^c::m_ActivateWindow("ahk_exe totalcmd.exe")
+<!<^h::m_ActivateWindow("ahk_exe chrome.exe")
+<!<^g::m_ActivateWindow("ahk_exe notepad2.exe")
+<!<^s::m_ActivateWindow("ahk_exe mintty.exe")
+<!<^v::m_ActivateWindow("ahk_exe vlc.exe")
+<!<^,::m_ActivateWindow("ahk_exe node.exe")
+!Tab::return

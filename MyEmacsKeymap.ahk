@@ -1,3 +1,16 @@
+Process, Priority,, Realtime
+;; Use Ahk2Exe v1.1.33 and later to build exe
+;;
+;; https://github.com/AutoHotkey/Ahk2Exe
+;;
+;@Ahk2Exe-UpdateManifest 1
+;@Ahk2Exe-SetName         MyEmacsKeymap
+;@Ahk2Exe-SetDescription  An AutoHotkey script to simulate Emacs keybindings on Windows
+;@Ahk2Exe-SetCompanyName  MyEmacsKeymap
+;@Ahk2Exe-SetOrigFilename MyEmacsKeymap.ahk
+;@Ahk2Exe-SetMainIcon     MyEmacsKeymap.ico
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; MyEmacsKeymap.ahk
 ;; - An AutoHotkey script to simulate Emacs keybindings on Windows
@@ -137,6 +150,17 @@ m_KillBuffer() {
 m_KillEmacs() {
     Send !{F4}
     global m_Mark := 0
+}
+
+;; C-M-m
+m_MaxMinWindow() {
+  WinGetActiveTitle, title
+  WinGet, maximized, MinMax, %title% 
+
+  if (maximized)
+     WinRestore, %title%
+  else
+     WinMaximize, %title%
 }
 ;; Cursor Motion ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; C-f
@@ -439,6 +463,7 @@ u::m_Undo()
 ^h::m_DeleteBackwardChar()
 !h::m_DeleteBackwardWord()
 ^!h::m_DeleteBackwardWord()
+^!m::m_MaxMinWindow()
 ^i::Send {Tab}
 ^j::m_NewLine()
 ^k::m_KillLine()

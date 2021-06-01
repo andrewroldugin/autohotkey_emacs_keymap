@@ -1,0 +1,16 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; delphi
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+#If WinActive("ahk_exe delphi32.exe") && m_Cx()
+k::Send ^{F4}
+#If WinActive("ahk_exe delphi32.exe")
+!^n::Send ^{Tab}
+!^p::Send +^{Tab}
+
+;; goto definition
+!.::Send !{UP}
+
+;; go back from definition
+!,::Send !{Left}
+
+!F12::Send !+{F11}

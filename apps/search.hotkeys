@@ -30,7 +30,14 @@ m_SearchSelectedText(engine) {
     content := m_GetSelectedText()
     template := m_GetSearchEngine(engine)
     if (content != "" && template != "") {
+        StringReplace, content, content, `%, `%25, All ; has to come first
+        StringReplace, content, content, `r`n, `%0A, All
+        StringReplace, content, content, ` , `+, All
         url := Format(template, content)
+
+        ;; added fix for firefox according to this link:
+        ;; https://www.autohotkey.com/boards/viewtopic.php?t=41873
+        WinActivate, Program Manager
         Run %url%
     }
 }

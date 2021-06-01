@@ -1,0 +1,51 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Visual Studio
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+m_VSRunRename() {
+  Send !o
+  Sleep 100
+  Send r
+}
+m_VSRunShowOptions() {
+  Send !p
+  Sleep 100
+  Send o
+}
+
+m_VSShowBuffersList() {
+  Send !w
+  Sleep 100
+  Send w
+}
+
+m_VSSearchMembers() {
+  Send !e
+  Sleep 100
+  Send g
+  Sleep 100
+  Send g
+}
+
+#If WinActive("ahk_exe devenv.exe") && m_Cx()
+k::Send ^{F4}
+b::m_VSShowBuffersList()
+s::m_VSSearchMembers()
+
+
+#If WinActive("ahk_exe devenv.exe")
+F2::m_VSRunRename()
+F11::m_VSRunShowOptions()
++F9::^+b
+
+;; tabs navigation
+!^n::Send ^{F6}
+!^p::Send +^{F6}
+
+;; goto definition
+!.::Send {F12}
+
+;; go back from definition
+!,::Send ^-
+
+;; comment block
+!/::Send +^/
